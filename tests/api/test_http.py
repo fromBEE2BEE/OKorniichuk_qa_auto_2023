@@ -11,7 +11,7 @@ def test_first_request():
 def test_second_request():
     r = requests.get('https://api.github.com/users/defunkt')
     print(f"Response Body is {r.json()}")
-    print(f"Response Status code is {r.status_code}")
+    assert r.status_code == 200
     print(f"Response Headers are {r.headers}")
 
 
