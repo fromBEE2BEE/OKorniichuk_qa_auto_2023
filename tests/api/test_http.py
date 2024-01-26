@@ -11,10 +11,11 @@ def test_first_request():
 def test_second_request():
     r = requests.get('https://api.github.com/users/defunkt')
     body = r.json()
+    headers = r.headers
 
     assert body['name'] == 'Chris Wanstrath'
     assert r.status_code == 200
-    print(f"Response Headers are {r.headers}")
+    assert headers['Server'] == 'GitHub.com'
 
 
 
