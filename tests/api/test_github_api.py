@@ -32,4 +32,10 @@ def test_repo_with_single_char_be_found(github_api):
     r = github_api.search_repo('s')
     assert r['total_count'] != 0
 
+@pytest.mark.api
+def test_emoji_exists(github_api):
+    unicode = github_api.get_emoji('1f1fa-1f1e6.png')
+    assert unicode['ukraine'] == '1f1fa-1f1e6.png'
+
+
 

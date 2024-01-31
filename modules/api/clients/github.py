@@ -17,4 +17,10 @@ class GitHub:
 
         return body
 
+    def get_emoji(self, unicode):
+        r = requests.get(f'https://api.github.com/emoji/{unicode}')
+        body = r.json()
+
+        return body
+
         
