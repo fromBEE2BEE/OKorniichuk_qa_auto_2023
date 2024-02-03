@@ -1,5 +1,7 @@
+# import os
 import pytest
 from modules.api.clients.github import GitHub
+
 
 
 class User:
@@ -31,3 +33,11 @@ def user():
 def github_api():
     api = GitHub()
     yield api
+
+
+# @pytest.fixture
+# def auth_token():
+    # token = os.environ.get('GITHUB_TOKEN')
+    # if not token:
+        # pytest.skip("Token environment variable not set")
+    # return token
