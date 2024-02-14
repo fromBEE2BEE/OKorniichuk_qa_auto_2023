@@ -1,7 +1,25 @@
 import sqlite3
 
-
 class Database():
+    def get_more_detailed_orders(self):
+        query = "SELECT orders.id, orders.order_date, customers.name, customers.city, \
+                products.name, products.description \
+                FROM orders \
+                JOIN customers ON orders.customer_id = customers.id \
+                JOIN products ON orders.product_id = products.id"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
+
+    def get_detailed_orders(self):
+        query = "SELECT orders.id, customers.name, products.name, \
+                products.description, orders.order_date \
+                FROM orders \
+                JOIN customers ON orders.customer_id = customers.id \
+                JOIN products ON orders.product_id = products.id"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
 
     def __init__(self):
         self.connection = sqlite3.connect(r'/Users/elena/OKorniichuk_qa_auto_2023' + r'/become_qa_auto.db')
@@ -47,16 +65,6 @@ class Database():
         self.cursor.execute(query)
         self.connection.commit()
 
-    def get_detailed_orders(self):
-        query = "SELECT orders.id, customers.name, products.name, \
-                products.description, orders.order_date \
-                FROM orders \
-                JOIN customers ON orders.customer_id = customers.id \
-                JOIN products ON orders.product_id = products.id"
-        self.cursor.execute(query)
-        record = self.cursor.fetchall()
-        return record
-
     def get_all_products(self):
         query = "SELECT id, name, description, quantity FROM products"
         self.cursor.execute(query)
@@ -87,8 +95,7 @@ class Database():
         self.cursor.execute(query)
         self.connection.commit()
         record = self.cursor.fetchall()
-        return record
-
+        
     def get_products_by_quantity(self, quantity):
         query = f"SELECT id, name FROM products WHERE quantity <= {quantity}"
         self.cursor.execute(query)
@@ -128,15 +135,7 @@ class Database():
         self.cursor.execute(query)
         self.connection.commit()
 
-    def get_more_detailed_orders(self):
-        query = "SELECT orders.id, orders.order_date, customers.name, customers.city, \
-                products.name, products.description \
-                FROM orders \
-                JOIN customers ON orders.customer_id = customers.id \
-                JOIN products ON orders.product_id = products.id"
-        self.cursor.execute(query)
-        record = self.cursor.fetchall()
-        return record
+    
 
     
     

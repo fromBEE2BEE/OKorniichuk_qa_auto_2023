@@ -1,7 +1,6 @@
 from modules.ui.page_objects.base_page import BasePage
 from selenium.webdriver.common.by import By
 
-
 class SignInPage(BasePage):
     URL = 'https://github.com/login'
 
@@ -12,22 +11,22 @@ class SignInPage(BasePage):
         self.driver.get(SignInPage.URL)
 
     def try_login(self, username, password):
-        # Знаходимо поле, в яке будемо вводити неправильне ім'я користувача або поштову адресу
+        # Find the field for entering a wrong login or an email address 
         login_elem = self.driver.find_element(By.ID, "login_field")
 
-        # Вводимо неправильне ім'я користувача або поштову адрІесу
+        # Enter a wrong login or an email address 
         login_elem.send_keys(username)
 
-        # Знаходимо поле, в яке будемо вводити неправильний пароль
+        # Find the field for entering a wrong password 
         pass_elem = self.driver.find_element(By.ID, "password")
 
-        # Вводимо неправильний пароль
+        # Enter a wrong password 
         pass_elem.send_keys(password)
 
-        # Знаходимо кнопку sign in
+        # Find the button "Sign in"
         btn_elem = self.driver.find_element(By.NAME, "commit")
 
-        # Емулюємо клік лівою кнопкою мишки
+        # Emulate a click of the left mouse button 
         btn_elem.click()
 
     def check_title(self, expected_title):
